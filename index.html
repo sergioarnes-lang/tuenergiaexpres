@@ -2,10 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>TuEnergíaExprés</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TuEnergíaExprés | Calculadora y Tarifas</title>
+  <meta name="description" content="Calcula tu ahorro en luz, compara tarifas y sube tu factura en segundos con TuEnergíaExprés. Sin permanencias ni letra pequeña.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>¡Web de TuEnergíaExprés en construcción!</h1>
-  <p>Próximamente: calculadora de ahorro, tarifas y plan amigo.</p>
+  <header class="header">
+    <h1>TuEnergíaExprés 
+    <p class="sub">Tu factura, más clara y más barata.</p>
+  </header>
+
+  <main>
+    <!-- BLOQUE TARIFAS -->
+    <section id="tarifas">
+      <h2>Nuestras Tarifas</h2>
+      <div class="tarifa">
+        <h3>Tarifa Estable 24h</h3>
+        <p>Precio fijo 0,119 €/kWh · Sin sorpresas ni permanencia.</p>
+        <button class="btn calcular" data-plan="fija">Calcular mi ahorro</button>
+      </div>
+      <div class="tarifa">
+        <h3>Tarifa Flexible (Indexada)</h3>
+        <p>Precio coste +0,02 €/kWh · Ahorra cuando baja el mercado.</p>
+        <button class="btn calcular" data-plan="indexada">Calcular mi ahorro</button>
+      </div>
+    </section>
+
+    <!-- BLOQUE CALCULADORA -->
+    <section id="calculadora">
+      <h2>Calcula tu ahorro estimado</h2>
+      <label>¿Cuánto pagas al mes? (€)
+        <input type="number" id="importe" placeholder="Ej. 95">
+      </label>
+      <label>¿Consumo mensual? (kWh)
+        <input type="number" id="kwh" placeholder="Ej. 250">
+      </label>
+      <button id="btnCalcular" class="btn azul">Calcular</button>
+      <div id="resultado" hidden></div>
+    </section>
+
+    <!-- BLOQUE SUBIR FACTURA -->
+    <section id="factura">
+      <h2>¿Quieres el cálculo exacto?</h2>
+      <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
+      <a href="https://api.whatsapp.com/send?phone=34626996310&text=Hola,%20quiero%20mi%20estudio%20gratis.%20Pago%20___€%2Fmes%20o%20consumo%20___kWh.%20Adjunto%20mi%20factura."
+         target="_blank" class="btn verde">Enviar por WhatsApp</a>
+      <form id="formFactura" method="POST" enctype="multipart/form-data" action="#">
+        <input type="text" name="nombre" placeholder="Tu nombre" required>
+        <input type="tel" name="telefono" placeholder="Tu teléfono" required>
+        <input type="file" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
+        <button type="submit" class="btn azul">Subir factura</button>
+        <p id="msgForm"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 TuEnergíaExprés · Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
