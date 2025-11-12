@@ -63,30 +63,17 @@
     </section>
 
     <!-- BLOQUE SUBIR FACTURA -->
-    <section id="factura" class="section">
-      <div class="section-heading">
-        <h2>¿Quieres el cálculo exacto?</h2>
-        <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
-      </div>
-      <div class="factura-grid">
-        <a href="https://api.whatsapp.com/send?phone=34626996310&text=Hola,%20quiero%20mi%20estudio%20gratis.%20Pago%20___€%2Fmes%20o%20consumo%20___kWh.%20Adjunto%20mi%20factura." target="_blank" rel="noopener" class="btn verde whatsapp-btn">Enviar por WhatsApp</a>
-        <form id="formFactura" method="POST" enctype="multipart/form-data" action="#" class="factura-form">
-          <div class="field">
-            <label for="nombre">Tu nombre</label>
-            <input id="nombre" type="text" name="nombre" placeholder="Tu nombre" required>
-          </div>
-          <div class="field">
-            <label for="telefono">Tu teléfono</label>
-            <input id="telefono" type="tel" name="telefono" placeholder="Tu teléfono" required>
-          </div>
-          <div class="field">
-            <label for="archivo">Adjunta tu factura (PDF o imagen)</label>
-            <input id="archivo" type="file" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-          <button type="submit" class="btn azul">Subir factura</button>
-          <p id="msgForm" class="form-msg" role="status" aria-live="polite"></p>
-        </form>
-      </div>
+    <section id="factura">
+      <h2>¿Quieres el cálculo exacto?</h2>
+      <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
+
+      <form id="formFactura">
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required>
+        <input type="file" id="archivo" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
+        <button type="submit" class="btn azul">Subir factura</button>
+        <p id="msgForm"></p>
+      </form>
     </section>
 
     <!-- BLOQUE PLAN AMIGO -->
