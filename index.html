@@ -1,100 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>TuEnergíaExprés | Calculadora y Tarifas</title>
-  <meta name="description" content="Calcula tu ahorro en luz, compara tarifas y sube tu factura en segundos con TuEnergíaExprés. Sin permanencias ni letra pequeña.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuEnergíaExprés | Calcula tu ahorro en luz</title>
+  <meta name="description" content="Compara tarifas de luz, calcula tu ahorro y sube tu factura para descubrir cuánto puedes ahorrar. Revisión gratuita en 24h." />
+  <meta property="og:title" content="TuEnergíaExprés - Revisión gratuita de tu factura de luz" />
+  <meta property="og:description" content="Calcula tu ahorro y sube tu factura. En menos de 24h sabrás si pagas de más." />
+  <meta property="og:url" content="https://tuenergiaexpres.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://tuenergiaexpres.com/og-image.jpg" />
+  <style>
+    :root {
+      --azul: #1D4ED8;
+      --verde: #22C55E;
+      --violeta-suave: rgba(139,92,246,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {font-family:'Inter',Arial,sans-serif;margin:0;padding:0;background:#fff;color:#111;}
+    header {background:linear-gradient(90deg,var(--azul),var(--verde));color:#fff;text-align:center;padding:60px 20px;}
+    h1 {margin:0;font-size:2.2rem;}
+    h2 {text-align:center;margin-top:40px;color:var(--azul);}
+    section {max-width:600px;margin:30px auto;padding:20px;}
+    
+    /* Tarjetas y calculadora */
+    .tarifa, #calculadora {
+      background: var(--violeta-suave);
+      border:1px solid rgba(29,78,216,0.15);
+      border-radius:16px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      padding:24px;
+      margin:20px auto;
+      backdrop-filter:blur(5px);
+      transition:transform .2s ease,box-shadow .2s ease;
+    }
+    .tarifa:hover, #calculadora:hover {transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    
+    input[type=text], input[type=tel], input[type=number], input[type=file] {
+      width:100%;padding:10px;margin:8px 0 16px;border:1px solid #ddd;border-radius:8px;
+    }
+    button, .btn {
+      background:var(--verde);color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:600;
+    }
+    button:hover, .btn:hover {background:#16a34a;}
+    #msgForm {text-align:center;margin-top:10px;}
+    footer {text-align:center;padding:30px;font-size:0.9rem;color:#666;}
+    a {text-decoration:none;}
+    
+    /* Modo oscuro */
+    body.dark-mode {background:#111;color:#eee;}
+    body.dark-mode header {background:linear-gradient(90deg,#3b82f6,var(--verde));}
+    body.dark-mode .tarifa, body.dark-mode #calculadora {
+      background:rgba(30,41,59,0.8);
+      border:1px solid rgba(255,255,255,0.1);
+      color:#eee;
+    }
+    body.dark-mode h2 {color:var(--verde);}
+    body.dark-mode button, body.dark-mode .btn {background:var(--azul);}
+    
+    /* Botón tema */
+    #theme-toggle {
+      position:fixed;top:15px;right:15px;
+      background:#f4f4f4;border:none;border-radius:50%;
+      font-size:18px;padding:6px 8px;cursor:pointer;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);z-index:9999;
+    }
+    #theme-toggle:hover {background:#e5e5e5;}
+    body.dark-mode #theme-toggle {background:#333;color:#fff;}
+    
+    /* Botón WhatsApp */
+    .btn-whatsapp {
+      position:fixed;bottom:18px;right:18px;
+      background-color:#25D366;border-radius:50%;
+      padding:6px;box-shadow:0 2px 6px rgba(0,0,0,0.3);
+      z-index:9999;transition:transform 0.2s ease;
+    }
+    .btn-whatsapp:hover {transform:scale(1.1);background-color:#22c55e;}
+    .btn-whatsapp img {width:34px;height:34px;display:block;}
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo" aria-label="TuEnergíaExprés">
-        <span class="logo-icon" aria-hidden="true">⚡</span>
-        <span class="logo-text">TuEnergíaExprés</span>
-      </div>
-      <p class="header-subtitle">Tu factura, más clara y más barata.</p>
-    </div>
+
+  <!-- Botón modo día/noche -->
+  <button id="theme-toggle" aria-label="Cambiar tema">🌙</button>
+
+  <header>
+    <h1>TuEnergíaExprés</h1>
+    <p>Tu factura, más clara y más barata.</p>
   </header>
 
-  <main class="container main-content">
-    <!-- BLOQUE TARIFAS -->
-    <section id="tarifas" class="section">
-      <div class="section-heading">
-        <h1>Nuestras Tarifas</h1>
-        <p>Escoge la opción que mejor se adapta a tu consumo y empieza a ahorrar desde el primer mes.</p>
-      </div>
-      <div class="tarifa-grid">
-        <article class="tarifa-card">
-          <h2>Tarifa Estable 24h</h2>
-          <p>Precio fijo 0,119 €/kWh · Sin sorpresas ni permanencia.</p>
-          <button class="btn calcular" data-plan="fija">Calcular mi ahorro</button>
-        </article>
-        <article class="tarifa-card">
-          <h2>Tarifa Flexible (Indexada)</h2>
-          <p>Precio coste +0,02 €/kWh · Ahorra cuando baja el mercado.</p>
-          <button class="btn calcular" data-plan="indexada">Calcular mi ahorro</button>
-        </article>
-      </div>
-    </section>
+  <section>
+    <h2>Nuestras Tarifas</h2>
 
-    <!-- BLOQUE CALCULADORA -->
-    <section id="calculadora" class="section">
-      <div class="section-heading">
-        <h2>Calcula tu ahorro estimado</h2>
-        <p>Introduce tus datos para conocer en segundos cuánto podrías ahorrar con TuEnergíaExprés.</p>
-      </div>
-      <form class="calculadora-form" novalidate>
-        <label class="field">
-          <span>¿Cuánto pagas al mes? (€)</span>
-          <input type="number" id="importe" placeholder="Ej. 95">
-        </label>
-        <label class="field">
-          <span>¿Consumo mensual? (kWh)</span>
-          <input type="number" id="kwh" placeholder="Ej. 250">
-        </label>
-        <button id="btnCalcular" class="btn azul" type="button">Calcular</button>
-      </form>
-      <div id="resultado" class="resultado" hidden></div>
-    </section>
+    <div class="tarifa">
+      <h3>Tarifa Estable 24h</h3>
+      <p>Precio fijo 0,119 €/kWh · Sin sorpresas ni permanencia.</p>
+      <a href="#calculadora" class="btn">Calcular mi ahorro</a>
+    </div>
 
-    <section id="factura">
-      <h2>¿Quieres el cálculo exacto?</h2>
-      <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
+    <div class="tarifa">
+      <h3>Tarifa Flexible (Indexada)</h3>
+      <p>Precio coste +0,02 €/kWh · Ahorra cuando baja el mercado.</p>
+      <a href="#calculadora" class="btn">Calcular mi ahorro</a>
+    </div>
+  </section>
 
-      <form id="formFactura">
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-        <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required>
-        <input type="file" id="archivo" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
-        <button type="submit" class="btn azul">Subir factura</button>
-        <p id="msgForm"></p>
-      </form>
-    </section>
+  <section id="calculadora">
+    <h2>Calcula tu ahorro estimado</h2>
+    <label>¿Cuánto pagas al mes? (€)</label>
+    <input type="number" id="pago" placeholder="Ej. 95">
+    <label>¿Consumo mensual? (kWh)</label>
+    <input type="number" id="consumo" placeholder="Ej. 250">
+    <button onclick="calcularAhorro()">Calcular</button>
+    <p id="resultado"></p>
+  </section>
 
-    <!-- BLOQUE PLAN AMIGO -->
-    <section id="plan-amigo" class="section plan-amigo">
-      <h2>Plan Amigo</h2>
-      <p>Trae a tus amigos y gana <strong>40 €</strong> por cada contrato confirmado.</p>
-      <p>Tu amigo también recibe 40 € en efectivo por Bizum o transferencia. Sin sorteos, sin puntos, dinero real.</p>
+  <section id="factura">
+    <h2>¿Quieres el cálculo exacto?</h2>
+    <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
 
-      <div class="amigo-acciones">
-        <button id="btnCopiar" class="btn azul">Copiar mi enlace</button>
-        <a href="https://api.whatsapp.com/send?text=Te%20recomiendo%20TuEnergíaExprés%20💡%20me%20han%20ahorrado%20en%20mi%20factura%20y%20te%20dan%2040€%20por%20cambiarte.%20Entra%20en%20https://tuenergiaexpres.com"
-           target="_blank" rel="noopener" class="btn verde">Compartir por WhatsApp</a>
-      </div>
+    <form id="formFactura" enctype="multipart/form-data">
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+      <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required>
+      <input type="file" id="archivo" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
+      <button type="submit" class="btn">Subir factura</button>
+      <p id="msgForm"></p>
+    </form>
+    <p style="font-size:0.8rem;color:#666;margin-top:8px;text-align:center;">
+      Tus datos se usan solo para gestionar tu estudio energético. No se comparten con terceros.
+    </p>
+  </section>
 
-      <p id="copiado" class="copiado-msg" role="status" aria-live="polite" hidden>✅ Enlace copiado al portapapeles</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2025 TuEnergíaExprés · Todos los derechos reservados · <a href="https://tureclamoexpres.com" target="_blank" rel="noopener">tureclamoexpres.com</a></p>
+  <footer>
+    © 2025 TuEnergíaExprés · Todos los derechos reservados  
+    <br><a href="https://tureclamoexpres.com" target="_blank">tureclamoexpres.com</a>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- WhatsApp oficial -->
+  <a href="https://wa.me/34953818494?text=Hola%2C%20quiero%20revisar%20mi%20factura%20de%20luz.%20%C2%BFMe%20puedes%20ayudar%3F"
+     class="btn-whatsapp" target="_blank" aria-label="Contactar por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+
+  <script>
+    // --- Modo día/noche ---
+    const toggle = document.getElementById('theme-toggle');
+    const userPref = localStorage.getItem('theme');
+    if (userPref === 'dark' || (!userPref && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.classList.add('dark-mode');
+      toggle.textContent = '☀️';
+    }
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // --- Calculadora ---
+    function calcularAhorro() {
+      const pago = parseFloat(document.getElementById("pago").value);
+      const consumo = parseFloat(document.getElementById("consumo").value);
+      const res = document.getElementById("resultado");
+      if (!pago || !consumo || pago <= 0 || consumo <= 0) {
+        res.innerHTML = "Introduce valores válidos.";
+        return;
+      }
+      const precioMedio = pago / consumo;
+      const ahorro = (precioMedio - 0.119) * consumo;
+      const ahorroPct = ((ahorro / pago) * 100).toFixed(1);
+      res.innerHTML = `Podrías ahorrar aproximadamente <b>${ahorro.toFixed(2)} €</b> al mes (<b>${ahorroPct}%</b> frente a la media del mercado).`;
+    }
+
+    // --- Formulario conectado a Google Script ---
+    const form = document.getElementById("formFactura");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById("msgForm");
+      msg.textContent = "Enviando...";
+      msg.style.color = "#555";
+      const formData = new FormData(form);
+      formData.append("origen", "web");
+      try {
+        const r = await fetch("https://script.google.com/macros/s/AKfycbzYxcXKcEvxLrI6PiRzSwv5WsTB8ADAAGul-IH1Mu9qWQngLg9Dvj56Zh555yyni5h8/exec", { method: "POST", body: formData });
+        const result = await r.json();
+        if (result.success) {
+          msg.textContent = "✅ Recibido, estamos revisando tu factura y te diremos tu ahorro real en las próximas horas.";
+          msg.style.color = "green";
+          form.reset();
+        } else {
+          msg.textContent = "❌ Error al enviar. Intenta más tarde.";
+          msg.style.color = "red";
+        }
+      } catch {
+        msg.textContent = "⚠️ Error de conexión. Verifica tu red.";
+        msg.style.color = "red";
+      }
+    });
+  </script>
+
 </body>
 </html>
