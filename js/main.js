@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const calcularBtn = document.getElementById('btnCalcular');
-  const importeInput = document.getElementById('importe');
-  const kwhInput = document.getElementById('kwh');
-  const resultado = document.getElementById('resultado');
-  const copyBtn = document.getElementById('btnCopiar');
-  const copiadoMsg = document.getElementById('copiado');
+document.addEventListener("DOMContentLoaded", () => {
+  const calcularBtn = document.getElementById("btnCalcular");
+  const importeInput = document.getElementById("importe");
+  const kwhInput = document.getElementById("kwh");
+  const resultado = document.getElementById("resultado");
+  const copyBtn = document.getElementById("btnCopiar");
+  const copiadoMsg = document.getElementById("copiado");
 
   if (calcularBtn && resultado) {
     calcularBtn.addEventListener('click', () => {
