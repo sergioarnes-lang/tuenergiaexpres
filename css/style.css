@@ -281,6 +281,7 @@ input:focus-visible {
   color: var(--color-muted);
 }
 
+#plan-amigo,
 .plan-amigo {
   text-align: center;
   background: linear-gradient(135deg, rgba(31, 122, 224, 0.12), rgba(0, 196, 140, 0.12));
