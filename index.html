@@ -91,16 +91,17 @@
 
     <!-- BLOQUE PLAN AMIGO -->
     <section id="plan-amigo" class="section plan-amigo">
-      <div class="plan-amigo-card">
-        <div class="plan-amigo-textos">
-          <h2>Plan Amigo: gana 40 €</h2>
-          <p>Por cada amigo que contrate la luz con TuEnergíaExprés te ingresamos 40 € por Bizum o transferencia.</p>
-        </div>
-        <div class="plan-amigo-cta">
-          <button type="button" class="btn compartir" id="btnCompartir">Compartir mi enlace</button>
-          <p id="copyMsg" class="copy-msg" role="status" aria-live="polite"></p>
-        </div>
+      <h2>Plan Amigo</h2>
+      <p>Trae a tus amigos y gana <strong>40 €</strong> por cada contrato confirmado.</p>
+      <p>Tu amigo también recibe 40 € en efectivo por Bizum o transferencia. Sin sorteos, sin puntos, dinero real.</p>
+
+      <div class="amigo-acciones">
+        <button id="btnCopiar" class="btn azul">Copiar mi enlace</button>
+        <a href="https://api.whatsapp.com/send?text=Te%20recomiendo%20TuEnergíaExprés%20💡%20me%20han%20ahorrado%20en%20mi%20factura%20y%20te%20dan%2040€%20por%20cambiarte.%20Entra%20en%20https://tuenergiaexpres.com"
+           target="_blank" rel="noopener" class="btn verde">Compartir por WhatsApp</a>
       </div>
+
+      <p id="copiado" class="copiado-msg" role="status" aria-live="polite" hidden>✅ Enlace copiado al portapapeles</p>
     </section>
   </main>
 
