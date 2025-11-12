@@ -58,4 +58,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  if (copyLinkBtn && copyToast) {
+    copyLinkBtn.addEventListener('click', async () => {
+      try {
+        const url = window.location.href;
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(url);
+        } else {
+          const inputAux = document.createElement('input');
+          inputAux.value = url;
+          document.body.appendChild(inputAux);
+          inputAux.select();
+          document.execCommand('copy');
+          document.body.removeChild(inputAux);
+        }
+
+        copyToast.hidden = false;
+        copyToast.textContent = 'Enlace copiado al portapapeles.';
+        copyToast.classList.add('copy-success');
+      } catch (error) {
+        console.error('No se pudo copiar el enlace', error);
+        copyToast.hidden = false;
+        copyToast.textContent = 'No hemos podido copiar el enlace. Inténtalo de nuevo.';
+        copyToast.classList.remove('copy-success');
+      }
+
+      setTimeout(() => {
+        copyToast.hidden = true;
+        copyToast.textContent = 'Enlace copiado al portapapeles.';
+        copyToast.classList.add('copy-success');
+      }, 3000);
+    });
+  }
 });
