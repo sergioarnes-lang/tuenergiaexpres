@@ -5,61 +5,107 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>TuEnergíaExprés | Calculadora y Tarifas</title>
   <meta name="description" content="Calcula tu ahorro en luz, compara tarifas y sube tu factura en segundos con TuEnergíaExprés. Sin permanencias ni letra pequeña.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="header">
-    <h1>TuEnergíaExprés 
-    <p class="sub">Tu factura, más clara y más barata.</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo" aria-label="TuEnergíaExprés">
+        <span class="logo-icon" aria-hidden="true">⚡</span>
+        <span class="logo-text">TuEnergíaExprés</span>
+      </div>
+      <p class="header-subtitle">Tu factura, más clara y más barata.</p>
+    </div>
   </header>
 
-  <main>
+  <main class="container main-content">
     <!-- BLOQUE TARIFAS -->
-    <section id="tarifas">
-      <h2>Nuestras Tarifas</h2>
-      <div class="tarifa">
-        <h3>Tarifa Estable 24h</h3>
-        <p>Precio fijo 0,119 €/kWh · Sin sorpresas ni permanencia.</p>
-        <button class="btn calcular" data-plan="fija">Calcular mi ahorro</button>
+    <section id="tarifas" class="section">
+      <div class="section-heading">
+        <h1>Nuestras Tarifas</h1>
+        <p>Escoge la opción que mejor se adapta a tu consumo y empieza a ahorrar desde el primer mes.</p>
       </div>
-      <div class="tarifa">
-        <h3>Tarifa Flexible (Indexada)</h3>
-        <p>Precio coste +0,02 €/kWh · Ahorra cuando baja el mercado.</p>
-        <button class="btn calcular" data-plan="indexada">Calcular mi ahorro</button>
+      <div class="tarifa-grid">
+        <article class="tarifa-card">
+          <h2>Tarifa Estable 24h</h2>
+          <p>Precio fijo 0,119 €/kWh · Sin sorpresas ni permanencia.</p>
+          <button class="btn calcular" data-plan="fija">Calcular mi ahorro</button>
+        </article>
+        <article class="tarifa-card">
+          <h2>Tarifa Flexible (Indexada)</h2>
+          <p>Precio coste +0,02 €/kWh · Ahorra cuando baja el mercado.</p>
+          <button class="btn calcular" data-plan="indexada">Calcular mi ahorro</button>
+        </article>
       </div>
     </section>
 
     <!-- BLOQUE CALCULADORA -->
-    <section id="calculadora">
-      <h2>Calcula tu ahorro estimado</h2>
-      <label>¿Cuánto pagas al mes? (€)
-        <input type="number" id="importe" placeholder="Ej. 95">
-      </label>
-      <label>¿Consumo mensual? (kWh)
-        <input type="number" id="kwh" placeholder="Ej. 250">
-      </label>
-      <button id="btnCalcular" class="btn azul">Calcular</button>
-      <div id="resultado" hidden></div>
+    <section id="calculadora" class="section">
+      <div class="section-heading">
+        <h2>Calcula tu ahorro estimado</h2>
+        <p>Introduce tus datos para conocer en segundos cuánto podrías ahorrar con TuEnergíaExprés.</p>
+      </div>
+      <form class="calculadora-form" novalidate>
+        <label class="field">
+          <span>¿Cuánto pagas al mes? (€)</span>
+          <input type="number" id="importe" placeholder="Ej. 95">
+        </label>
+        <label class="field">
+          <span>¿Consumo mensual? (kWh)</span>
+          <input type="number" id="kwh" placeholder="Ej. 250">
+        </label>
+        <button id="btnCalcular" class="btn azul" type="button">Calcular</button>
+      </form>
+      <div id="resultado" class="resultado" hidden></div>
     </section>
 
     <!-- BLOQUE SUBIR FACTURA -->
-    <section id="factura">
-      <h2>¿Quieres el cálculo exacto?</h2>
-      <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
-      <a href="https://api.whatsapp.com/send?phone=34626996310&text=Hola,%20quiero%20mi%20estudio%20gratis.%20Pago%20___€%2Fmes%20o%20consumo%20___kWh.%20Adjunto%20mi%20factura."
-         target="_blank" class="btn verde">Enviar por WhatsApp</a>
-      <form id="formFactura" method="POST" enctype="multipart/form-data" action="#">
-        <input type="text" name="nombre" placeholder="Tu nombre" required>
-        <input type="tel" name="telefono" placeholder="Tu teléfono" required>
-        <input type="file" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
-        <button type="submit" class="btn azul">Subir factura</button>
-        <p id="msgForm"></p>
-      </form>
+    <section id="factura" class="section">
+      <div class="section-heading">
+        <h2>¿Quieres el cálculo exacto?</h2>
+        <p>Envíanos tu factura y te confirmamos tu ahorro real en menos de 24 h.</p>
+      </div>
+      <div class="factura-grid">
+        <a href="https://api.whatsapp.com/send?phone=34626996310&text=Hola,%20quiero%20mi%20estudio%20gratis.%20Pago%20___€%2Fmes%20o%20consumo%20___kWh.%20Adjunto%20mi%20factura." target="_blank" rel="noopener" class="btn verde whatsapp-btn">Enviar por WhatsApp</a>
+        <form id="formFactura" method="POST" enctype="multipart/form-data" action="#" class="factura-form">
+          <div class="field">
+            <label for="nombre">Tu nombre</label>
+            <input id="nombre" type="text" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="telefono">Tu teléfono</label>
+            <input id="telefono" type="tel" name="telefono" placeholder="Tu teléfono" required>
+          </div>
+          <div class="field">
+            <label for="archivo">Adjunta tu factura (PDF o imagen)</label>
+            <input id="archivo" type="file" name="archivo" accept=".pdf,.jpg,.jpeg,.png">
+          </div>
+          <button type="submit" class="btn azul">Subir factura</button>
+          <p id="msgForm" class="form-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- BLOQUE PLAN AMIGO -->
+    <section id="plan-amigo" class="section plan-amigo">
+      <div class="plan-amigo-card">
+        <div class="plan-amigo-textos">
+          <h2>Plan Amigo: gana 40 €</h2>
+          <p>Por cada amigo que contrate la luz con TuEnergíaExprés te ingresamos 40 € por Bizum o transferencia.</p>
+        </div>
+        <div class="plan-amigo-cta">
+          <button type="button" class="btn compartir" id="btnCompartir">Compartir mi enlace</button>
+          <p id="copyMsg" class="copy-msg" role="status" aria-live="polite"></p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 TuEnergíaExprés · Todos los derechos reservados</p>
+  <footer class="site-footer">
+    <p>© 2025 TuEnergíaExprés · Todos los derechos reservados · <a href="https://tureclamoexpres.com" target="_blank" rel="noopener">tureclamoexpres.com</a></p>
   </footer>
 
   <script src="js/main.js"></script>
