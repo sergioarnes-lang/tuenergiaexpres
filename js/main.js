@@ -92,3 +92,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+const form = document.getElementById("formFactura");
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const archivoInput = document.getElementById("archivo");
+    const archivo = archivoInput.files.length > 0 ? archivoInput.files[0].name : "Sin archivo";
+    const msg = document.getElementById("msgForm");
+    msg.textContent = "Enviando...";
+    msg.style.color = "#555";
+
+    try {
+      const body = JSON.stringify({
+        nombre,
+        telefono,
+        archivo,
+        origen: "web"
+      });
+      const response = await fetch("https://script.google.com/macros/s/AKfycbzYxcXKcEvxLrI6PiRzSwv5WsTB8ADAAGul-IH1Mu9qWQngLg9Dvj56Zh555yyni5h8/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        msg.textContent = "✅ Enviado correctamente. Te contactaremos en breve.";
+        msg.style.color = "green";
+        form.reset();
+      } else {
+        msg.textContent = "❌ Error al enviar. Intenta más tarde.";
+        msg.style.color = "red";
+      }
+    } catch (err) {
+      msg.textContent = "⚠️ Error de conexión.";
+      msg.style.color = "red";
+    }
+  });
+}
