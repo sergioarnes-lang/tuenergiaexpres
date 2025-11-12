@@ -283,54 +283,33 @@ input:focus-visible {
 
 #plan-amigo,
 .plan-amigo {
-  background: #f9fafb;
-  border-top: 2px solid #1d4ed8;
-  padding: clamp(32px, 6vw, 48px) clamp(20px, 5vw, 40px);
-  border-radius: 16px 16px 0 0;
-  box-shadow: none;
-}
-
-.plan-amigo-card {
-  background: linear-gradient(135deg, rgba(31, 122, 224, 0.16), rgba(0, 196, 140, 0.16));
-  border-radius: var(--radius-large);
+  text-align: center;
+  background: linear-gradient(135deg, rgba(31, 122, 224, 0.12), rgba(0, 196, 140, 0.12));
   border: 1px solid rgba(31, 122, 224, 0.18);
-  padding: clamp(28px, 5vw, 40px);
-  display: grid;
-  gap: 18px;
-  box-shadow: var(--shadow-soft);
 }
 
-.plan-amigo-textos h2,
-#plan-amigo h2 {
-  margin: 0 0 10px;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  color: #1d4ed8;
+.plan-amigo h2 {
+  margin-top: 0;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
 }
 
-.plan-amigo-textos p {
-  margin: 0;
+.plan-amigo p {
+  margin: 0 0 12px;
   color: var(--color-muted);
-  font-size: clamp(1rem, 2vw, 1.05rem);
+  font-size: clamp(1rem, 2vw, 1.08rem);
 }
 
-.plan-amigo-cta,
 .amigo-acciones {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  justify-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.amigo-acciones {
-  margin-top: 1rem;
-}
-
-.copy-msg {
-  margin: 0;
-  color: var(--color-muted);
-  font-size: 0.9rem;
-}
-
-.copy-success {
+.copiado-msg {
+  margin: 16px 0 0;
+  font-size: 0.95rem;
   color: var(--color-primary-dark);
 }
 
@@ -370,11 +349,6 @@ input:focus-visible {
     grid-template-columns: 0.9fr 1.1fr;
     align-items: start;
   }
-
-  .plan-amigo-card {
-    grid-template-columns: 2fr 1fr;
-    align-items: center;
-  }
 }
 
 @media (max-width: 480px) {
@@ -402,5 +376,9 @@ input:focus-visible {
 
   .whatsapp-btn {
     justify-self: stretch;
+  }
+
+  .amigo-acciones {
+    flex-direction: column;
   }
 }

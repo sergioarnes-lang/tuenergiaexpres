@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const importeInput = document.getElementById('importe');
   const kwhInput = document.getElementById('kwh');
   const resultado = document.getElementById('resultado');
-  const compartirBtn = document.getElementById('btnCompartir');
-  const copyMsg = document.getElementById('copyMsg');
+  const copyBtn = document.getElementById('btnCopiar');
+  const copiadoMsg = document.getElementById('copiado');
 
   if (calcularBtn && resultado) {
     calcularBtn.addEventListener('click', () => {
@@ -28,24 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (compartirBtn) {
-    compartirBtn.addEventListener('click', async () => {
-      copyMsg.textContent = '';
-      copyMsg.classList.remove('copy-success');
-      compartirBtn.disabled = true;
+  if (copyBtn && copiadoMsg) {
+    copyBtn.addEventListener('click', async () => {
+      copiadoMsg.hidden = true;
+      copyBtn.disabled = true;
+
+      const url = window.location.href;
 
       try {
-        const url = window.location.href;
-        if (navigator.share) {
-          await navigator.share({
-            title: 'TuEnergíaExprés - Plan Amigo',
-            text: 'Únete a TuEnergíaExprés y consigue 40 € con mi enlace.',
-            url
-          });
-          copyMsg.textContent = 'Enlace compartido correctamente.';
-        } else if (navigator.clipboard?.writeText) {
+        if (navigator.clipboard?.writeText) {
           await navigator.clipboard.writeText(url);
-          copyMsg.textContent = 'Enlace copiado al portapapeles.';
         } else {
           const inputAux = document.createElement('input');
           inputAux.value = url;
@@ -53,15 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
           inputAux.select();
           document.execCommand('copy');
           document.body.removeChild(inputAux);
-          copyMsg.textContent = 'Enlace copiado al portapapeles.';
         }
-        copyMsg.classList.add('copy-success');
+
+        copiadoMsg.textContent = '✅ Enlace copiado al portapapeles';
+        copiadoMsg.hidden = false;
       } catch (error) {
-        console.error('No se pudo compartir el enlace', error);
-        copyMsg.textContent = 'No hemos podido compartir el enlace. Inténtalo de nuevo.';
-        copyMsg.classList.remove('copy-success');
+        console.error('No se pudo copiar el enlace', error);
+        copiadoMsg.textContent = 'No hemos podido copiar el enlace. Inténtalo de nuevo.';
+        copiadoMsg.hidden = false;
       } finally {
-        compartirBtn.disabled = false;
+        copyBtn.disabled = false;
       }
     });
   }
