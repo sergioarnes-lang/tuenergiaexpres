@@ -281,9 +281,12 @@ input:focus-visible {
   color: var(--color-muted);
 }
 
+#plan-amigo,
 .plan-amigo {
-  background: transparent;
-  padding: 0;
+  background: #f9fafb;
+  border-top: 2px solid #1d4ed8;
+  padding: clamp(32px, 6vw, 48px) clamp(20px, 5vw, 40px);
+  border-radius: 16px 16px 0 0;
   box-shadow: none;
 }
 
@@ -297,9 +300,11 @@ input:focus-visible {
   box-shadow: var(--shadow-soft);
 }
 
-.plan-amigo-textos h2 {
+.plan-amigo-textos h2,
+#plan-amigo h2 {
   margin: 0 0 10px;
   font-size: clamp(1.4rem, 3vw, 2rem);
+  color: #1d4ed8;
 }
 
 .plan-amigo-textos p {
@@ -308,10 +313,15 @@ input:focus-visible {
   font-size: clamp(1rem, 2vw, 1.05rem);
 }
 
-.plan-amigo-cta {
+.plan-amigo-cta,
+.amigo-acciones {
   display: grid;
   gap: 12px;
   justify-items: center;
+}
+
+.amigo-acciones {
+  margin-top: 1rem;
 }
 
 .copy-msg {
