@@ -97,8 +97,12 @@
           <p>Por cada amigo que contrate la luz con TuEnergíaExprés te ingresamos 40 € por Bizum o transferencia.</p>
         </div>
         <div class="plan-amigo-cta">
-          <button type="button" class="btn compartir" id="btnCompartir">Compartir mi enlace</button>
+          <div class="plan-amigo-buttons">
+            <button type="button" class="btn compartir" id="btnCompartir">Compartir mi enlace</button>
+            <button type="button" class="btn copiar" id="btnCopiar">Copiar enlace</button>
+          </div>
           <p id="copyMsg" class="copy-msg" role="status" aria-live="polite"></p>
+          <p id="copiado" class="copy-msg copy-toast" role="status" aria-live="polite" hidden>Enlace copiado al portapapeles.</p>
         </div>
       </div>
     </section>

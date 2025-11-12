@@ -314,10 +314,39 @@ input:focus-visible {
   justify-items: center;
 }
 
+.plan-amigo-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn.copiar {
+  background: linear-gradient(135deg, #ff9d3d, #ff7a18);
+  box-shadow: 0 15px 30px rgba(255, 138, 51, 0.25);
+  min-width: 200px;
+}
+
+.btn.copiar:hover,
+.btn.copiar:focus-visible {
+  background: linear-gradient(135deg, #f07c12, #e25f00);
+  transform: translateY(-2px);
+}
+
 .copy-msg {
   margin: 0;
   color: var(--color-muted);
   font-size: 0.9rem;
+}
+
+.copy-toast {
+  background: rgba(31, 122, 224, 0.12);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+}
+
+.copy-toast.copy-success {
+  color: var(--color-primary-dark);
 }
 
 .copy-success {
